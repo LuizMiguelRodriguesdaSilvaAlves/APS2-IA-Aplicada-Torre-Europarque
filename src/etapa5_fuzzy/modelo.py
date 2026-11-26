@@ -44,7 +44,9 @@ def _graus_fuzzy(temperatura_c,umidade_pct):
     return t,u
 
 def calcular_sugeno(temperatura_c,umidade_pct):
-    """Sugeno zero-order: media ponderada dos consequentes constantes."""
+    """Sugeno de ordem zero: media ponderada dos consequentes constantes."""
+    if not (0<=temperatura_c<=50 and 0<=umidade_pct<=100):
+        raise ValueError("Temperatura ou umidade fora do universo de discurso.")
     t,u=_graus_fuzzy(temperatura_c,umidade_pct)
     ativacoes=[min(t["alta"],u["baixa"]),min(t["alta"],u["media"]),
                min(t["media"],u["baixa"]),max(t["baixa"],u["alta"],min(t["media"],u["media"]))]
@@ -57,15 +59,26 @@ def calcular_mamdani(temperatura_c=34,umidade_pct=30):
         raise ValueError("Temperatura ou umidade fora do universo de discurso.")
     _,ctrl=_bibliotecas()
     simulacao=ctrl.ControlSystemSimulation(construir_mamdani())
-    simulacao.input["temperatura"]=temperatura_c; simulacao.input["umidade"]=umidade_pct
+    simulacao.input["temperatura"]=temperatura_c
+    simulacao.input["umidade"]=umidade_pct
     simulacao.compute()
     return float(simulacao.output["aditivo"])
 
 def superficie_resposta(resolucao=21):
-    temperaturas=np.linspace(0,50,resolucao); umidades=np.linspace(0,100,resolucao)
-    mamdani=np.zeros((resolucao,resolucao)); sugeno=np.zeros_like(mamdani)
+    """Calcula a malha 3D reutilizando o sistema de controle Mamdani."""
+    if resolucao<2:
+        raise ValueError("A resolucao da superficie deve ter ao menos dois pontos.")
+    _,ctrl=_bibliotecas()
+    temperaturas=np.linspace(0,50,resolucao)
+    umidades=np.linspace(0,100,resolucao)
+    mamdani=np.zeros((resolucao,resolucao))
+    sugeno=np.zeros_like(mamdani)
+    simulacao=ctrl.ControlSystemSimulation(construir_mamdani(),cache=False)
     for i,t in enumerate(temperaturas):
         for j,u in enumerate(umidades):
-            mamdani[i,j]=calcular_mamdani(float(t),float(u))
+            simulacao.input["temperatura"]=float(t)
+            simulacao.input["umidade"]=float(u)
+            simulacao.compute()
+            mamdani[i,j]=float(simulacao.output["aditivo"])
             sugeno[i,j]=calcular_sugeno(float(t),float(u))
     return temperaturas,umidades,mamdani,sugeno
