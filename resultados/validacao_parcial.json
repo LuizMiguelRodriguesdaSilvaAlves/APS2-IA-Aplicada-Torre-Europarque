@@ -1,0 +1,36 @@
+{
+  "status": "validacao_parcial_local",
+  "etapa1_astar": {"distancia_arestas": 14, "obstaculos_respeitados": true},
+  "etapa1_frota": {
+    "referencia_por_enumeracao_exaustiva": {
+      "unidades_A": 2, "unidades_B": 0, "unidades_C": 2,
+      "capacidade_t_dia": 450, "custo_brl_dia": 2900
+    },
+    "confirmacao_PuLP": "pendente_no_Colab"
+  },
+  "etapa2_rota": {
+    "benchmark_exato": {
+      "fitness": 23.068520619853317,
+      "route": ["Bloco 1", "Bloco 2", "Bloco 3", "Bloco 6", "Bloco 5", "Bloco 4"],
+      "distance_units": 23.068520619853317, "load_t": 108.0,
+      "overload_t": 0.0, "permutations_checked": 720
+    },
+    "total_demanda_t": 108.0, "capacidade_caminhao_t": 120,
+    "execucao_DEAP": "pendente_no_Colab"
+  },
+  "etapa2_simpy": {
+    "M1_min": 5, "M2_min": 7, "duracao_min": 300,
+    "intervalo_chegada_hipotetico_min": 4,
+    "gargalo_previsto": "Bomba M2", "execucao_SimPy": "pendente_no_Colab"
+  },
+  "etapa3_rdf": {
+    "triplas": 35,
+    "consulta_fornecedores": [
+      {"material": "Aco CA-50", "fornecedor": "Fornecedor simulado de aco"},
+      {"material": "Concreto FCK 30", "fornecedor": "Fornecedor simulado de concreto"}
+    ]
+  },
+  "etapa4_mlp": {"acuracia_holdout_sintetico": 1.0, "loss_final": 0.005172657405919243},
+  "etapa5_fuzzy": {"execucao_scikit_fuzzy": "pendente_no_Colab"},
+  "nota": "Custos, coordenadas/demandas, telemetria e fornecedores sao sinteticos. Valores pendentes nao foram inventados."
+}
