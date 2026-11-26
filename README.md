@@ -31,13 +31,13 @@ python -m pytest -q
 python -m src.gerar_resultados
 ```
 
-O notebook integrado e o relatorio DOCX fazem parte do pacote unificado de entrega da APS 2. O notebook deve ser aberto no Google Colab e executado por completo (Ambiente de execucao > Executar tudo), salvando uma copia com as saidas antes de substituir o arquivo no ZIP final.
+O notebook integrado e o relatorio tecnico em DOCX tambem fazem parte do pacote de entrega da APS 2. Para acompanhar as etapas na pratica, abra o notebook no Google Colab e execute tudo em **Ambiente de execucao > Executar tudo**. Quando terminar, salve uma copia com as saidas geradas e use essa versao no ZIP final.
 
 ## Premissas e limites
 Custos/capacidades das carregadeiras, coordenadas/demandas dos blocos, telemetria e fornecedores sao hipoteticos/sinteticos, pois o enunciado nao fornece dados reais. Os fornecedores RDF sao ficticios e nao ha consulta real a uma base comercial SINAPI/CUB. Os prototipos nao devem ser usados em operacao real sem dados validados, calibracao e aprovacao tecnica.
 
 ## Estado de validacao
-A validacao local disponivel foi registrada em `resultados/validacao_parcial.json`. A* (rota), RDF/SPARQL e MLP foram executados localmente. A confirmacao integral de PuLP, DEAP, SimPy e scikit-fuzzy depende da instalacao das bibliotecas e da execucao completa no Colab; nao foram inventados resultados para essas etapas.
+O notebook integrado registra a execucao das cinco etapas e a conclusao da suite automatizada com **8 testes aprovados**. Nessa execucao, o A* encontrou um caminho de 14 arestas; o PuLP retornou uma solucao otima de 2 unidades A e 2 C (450 t/dia, com custo hipotetico de R$ 2.900/dia); o DEAP alcancou o benchmark exato da rota (23,069 unidades de distancia); e a simulacao SimPy processou 42 das 75 chegadas, apontando a Bomba M2 como gargalo e espera media de 61,5 minutos. O grafo RDF gerou 35 triplas e a consulta retornou dois fornecedores ficticios; a MLP obteve 100% de acuracia no conjunto sintetico de teste; e, para 34 °C e 30% de umidade, as saidas Fuzzy foram 50,000% (Mamdani) e 56,786% (Sugeno). Esses numeros demonstram o funcionamento dos prototipos sob as hipoteses adotadas e nao representam dados ou desempenho de uma obra real.
 
 ## Repositorio
 https://github.com/LuizMiguelRodriguesdaSilvaAlves/APS2-IA-Aplicada-Torre-Europarque
