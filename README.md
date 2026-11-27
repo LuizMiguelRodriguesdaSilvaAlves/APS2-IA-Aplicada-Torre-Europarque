@@ -2,7 +2,7 @@
 
 [![Testes](https://github.com/LuizMiguelRodriguesdaSilvaAlves/APS2-IA-Aplicada-Torre-Europarque/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/LuizMiguelRodriguesdaSilvaAlves/APS2-IA-Aplicada-Torre-Europarque/actions/workflows/tests.yml)
 ![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-green.svg)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 Um conjunto de protótipos em Python que explora como algoritmos de busca, otimização, simulação, representação de conhecimento, redes neurais e lógica fuzzy podem apoiar problemas de planejamento em um canteiro de obras.
 
