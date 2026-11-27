@@ -1,13 +1,23 @@
-# Resultados e evidencias
+# Resultados e artefatos gerados
 
-Os arquivos PNG nesta pasta sao evidencias geradas localmente:
-- etapa1_rota_astar.png: caminho A* e obstaculos da malha;
-- etapa3_grafo_rdf.png: visualizacao simplificada do grafo de conhecimento;
-- etapa4_perda_mlp.png: curva de perda da MLP no conjunto sintetico.
+Os artefatos completos são produzidos localmente pelo executor integrado:
 
-O arquivo validacao_parcial.json registra apenas resultados realmente executados neste ambiente e marca explicitamente os componentes ainda pendentes de validacao no Google Colab por ausencia de dependencias no ambiente local.
+~~~bash
+python -m src.gerar_resultados
+~~~
 
-Para gerar todos os resultados com as cinco bibliotecas:
-1. Instale requirements.txt;
-2. Execute o notebook integrado no Google Colab (Runtime > Run all);
-3. Confirme as saidas numéricas e os graficos antes de atualizar este registro.
+Após a execução, esta pasta recebe:
+
+| Arquivo | Conteúdo |
+| --- | --- |
+| etapa1_rota_astar.png | Grafo da malha com caminho A* e obstáculos destacados |
+| etapa2_tempos_servico.png | Comparação dos tempos de serviço M1 e M2 |
+| grafo_torre_europarque.ttl | Grafo RDF serializado no formato Turtle |
+| etapa4_perda_mlp.png | Histórico da perda durante o treinamento da MLP |
+| etapa5_superficie_mamdani.png | Superfície de resposta do controlador Mamdani |
+| etapa5_superficie_sugeno.png | Superfície de resposta do controlador Sugeno |
+| resultados_execucao.json | Métricas consolidadas das cinco etapas |
+
+Os arquivos acima são saídas locais e são ignorados pelo Git por padrão, pois podem ser regenerados. O arquivo <code>validacao_parcial.json</code> é mantido como registro histórico de uma validação local parcial; ele não substitui o JSON gerado por uma execução completa.
+
+Todos os resultados dependem de dados e parâmetros sintéticos. Consulte a documentação de premissas antes de interpretar os números.

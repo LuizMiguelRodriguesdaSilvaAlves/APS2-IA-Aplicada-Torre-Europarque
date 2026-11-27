@@ -1,9 +1,23 @@
+# Python bytecode and cache
 __pycache__/
 *.py[cod]
 .pytest_cache/
+
+# Virtual environments
 .venv/
 venv/
+env/
+
+# Jupyter local artifacts
 .ipynb_checkpoints/
+
+# Operating system and editor files
 .DS_Store
 Thumbs.db
 *.log
+.vscode/
+
+# Regenerable outputs produced by src.gerar_resultados
+resultados/*.png
+resultados/*.ttl
+resultados/resultados_execucao.json
